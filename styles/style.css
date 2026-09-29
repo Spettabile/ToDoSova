@@ -128,6 +128,30 @@
         outline-offset: 2px;
     }
 
+    .priority-picker {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 18px;
+    }
+
+    .priority-option {
+        flex: 1;
+        background: var(--panel);
+        border: 1px solid var(--panel-border);
+        border-radius: 8px;
+        padding: 8px 6px;
+        color: var(--text-dim);
+        font-family: inherit;
+        font-size: 0.82rem;
+        cursor: pointer;
+        transition: border-color 0.15s, color 0.15s;
+    }
+
+    .priority-option.active {
+        color: var(--text);
+        border-color: var(--amber);
+    }
+
     .filters {
         display: flex;
         gap: 4px;

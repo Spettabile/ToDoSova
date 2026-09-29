@@ -11,7 +11,9 @@
     href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Work+Sans:wght@400;500;600&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles/style.css">
-  <script src="script.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <script src="js/priorityBtn.js" defer></script>
+  <script src="js/getTaskWord.js" defer></script>
 </head>
 
 <body>
@@ -37,6 +39,12 @@
     <div class="composer">
       <input type="text" placeholder="Что нужно сделать?" id="new-task" />
       <button id="add-btn">Добавить</button>
+    </div>
+
+    <div class="priority-picker" role="group" aria-label="Приоритет задачи">
+      <button type="button" class="priority-option active" data-priority="1">💤 Низкий</button>
+      <button type="button" class="priority-option" data-priority="2">📌 Средний</button>
+      <button type="button" class="priority-option" data-priority="3">🔥 Высокий</button>
     </div>
 
     <nav class="filters">
