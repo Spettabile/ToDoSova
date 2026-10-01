@@ -213,6 +213,19 @@
         font-size: 0.95rem;
     }
 
+    .task .edit-input {
+        flex: 1;
+        background: var(--panel);
+        border: 1px solid var(--amber);
+        border-radius: 6px;
+        padding: 4px 8px;
+        color: var(--text);
+        font-family: inherit;
+        font-size: 0.95rem;
+        outline: none;
+    }
+
+    .task .edit-btn,
     .task .delete-btn {
         background: none;
         border: none;
@@ -227,8 +240,14 @@
         transition: opacity 0.15s, color 0.15s, background 0.15s;
     }
 
+    .task:hover .edit-btn,
     .task:hover .delete-btn {
         opacity: 1;
+    }
+
+    .edit-btn:hover {
+        color: var(--amber);
+        background: rgba(227, 179, 76, 0.12);
     }
 
     .delete-btn:hover {
@@ -251,6 +270,8 @@
     }
 
     @media (hover: none) {
+
+        .task .edit-btn,
         .task .delete-btn {
             opacity: 1;
             min-width: 44px;

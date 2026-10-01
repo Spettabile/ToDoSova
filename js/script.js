@@ -49,12 +49,17 @@ const renderTasks = () => {
         label.classList.add("label")
         label.textContent = `${getPriorityLabel(task.priority)} ${task.title}`
 
+        const editBtn = document.createElement("button")
+        editBtn.classList.add("edit-btn")
+        editBtn.textContent = "✎"
+
         const deleteBtn = document.createElement("button")
         deleteBtn.classList.add("delete-btn")
         deleteBtn.textContent = "✕"
 
         item.appendChild(dot)
         item.appendChild(label)
+        item.appendChild(editBtn)
         item.appendChild(deleteBtn)
 
         list.appendChild(item)
@@ -89,16 +94,58 @@ list.addEventListener("click", (e) => {
         return
     }
 
+    if (e.target.closest(".edit-btn")) {
+        startEdit(item, index)
+        return
+    }
+
     tasks[index].isCompleted = !tasks[index].isCompleted
 
     renderTasks()
 })
 
+const startEdit = (item, index) => {
+    const label = item.querySelector(".label")
+    if (!label) return
+
+    const input = document.createElement("input")
+    input.type = "text"
+    input.classList.add("edit-input")
+    input.value = tasks[index].title
+
+    label.replaceWith(input)
+    input.focus()
+    input.select()
+
+    let handled = false
+
+    const finishEdit = (shouldSave) => {
+        if (handled) return
+        handled = true
+
+        if (shouldSave) {
+            const newTitle = input.value.trim()
+            if (newTitle !== "") {
+                tasks[index].title = newTitle
+            }
+        }
+
+        renderTasks()
+    }
+
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") finishEdit(true)
+        if (e.key === "Escape") finishEdit(false)
+    })
+
+    input.addEventListener("blur", () => finishEdit(true))
+
+}
+
 renderTasks()
 
 const button = document.querySelector("#add-btn")
 const input = document.querySelector("#new-task")
-
 
 button.addEventListener("click", () => {
     const title = input.value.trim()
@@ -139,6 +186,8 @@ filters.addEventListener("click", (e) => {
 
     renderTasks()
 })
+
+
 
 
 
